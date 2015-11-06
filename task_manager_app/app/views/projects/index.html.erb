@@ -1,0 +1,45 @@
+<head>
+	<style type="text/css">
+		#body-container{
+			background: url("./background1.jpg") grey;
+			background-position: center;
+			height: 400px;
+		}
+		body{
+			position: relative;
+			height: 400px;
+			font-size: 20px;
+		}
+		h1{
+			text-align: center;
+			
+		}
+		#tasks-container{
+			height:100%;
+		}
+		
+
+	</style>
+</head>
+<body>
+	<div id="body-container">
+	<h1>Your to-do list</h1>
+		<div id="tasks-container">
+		<% @project.each do |beta|%>
+		    </br>
+		    <%if beta.users_id == current_user.id%>
+		    <%= beta.project_name%>
+		    <%= link_to '>', project_path(beta.id) %>
+		    <%= link_to 'Delete', beta, :method => 'delete' %></br>
+		    <%end%> 
+		<% end %>
+		</div>
+
+		<form accept-charset="UTF-8" action="/projects" method="post">
+		  <input name="authenticity_token" type="hidden" value="J7CBxfHalt49OSHp27hblqK20c9PgwJ108nDHX/8Cts=" />
+		  <input type="text" name="project_name" id="name" />
+		  <input type="hidden" name="users_id" id="users_id" value= '<%=current_user.id%>' />
+		  <input type="submit">
+		</form>
+	</div>
+</body>

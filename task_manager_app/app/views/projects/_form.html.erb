@@ -1,0 +1,5 @@
+<%= form_for @project do |form| %>
+  Create a new project: <%= form.text_field :name %></br>
+  <%= form.hidden_field :user_id, :value => current_user.id %></br>
+  <%= form.submit %>
+<% end %>

@@ -3,6 +3,8 @@ class CreateTasks < ActiveRecord::Migration
     create_table :tasks do |t|
     	t.string :name
       t.timestamps null: false
+      t.belongs_to :projects
+      t.belongs_to :users
     end
   end
 end
