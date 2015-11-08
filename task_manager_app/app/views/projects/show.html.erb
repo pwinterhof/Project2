@@ -1,9 +1,10 @@
 <head>
 	<style type="text/css">
-
+		
+		
 		#body-container{
 	      background: url("http://hdwgo.com/wp-content/uploads/2015/03/autumn-background-nature-wallpapers-images.jpg") white;
-	      color: white;
+
 	      background-position: center;
 	      background-size:cover;
 	      position: fixed;
@@ -13,6 +14,8 @@
 	    }
 		h1{
 			text-align: center;
+			color:white;
+			text-decoration: underline;
 		}
 		h2{
 			font-size: 24px;
@@ -21,7 +24,7 @@
 			text-decoration: underline;
 		}
 		#tasks-container{
-			color: white;
+			
 			margin-left: auto;
 			margin-right: auto;
 			position: relative;
@@ -46,12 +49,12 @@
 		}
 		
 		#form-container{
-			position:fixed;
+			position:relative;
 			height: 100px;
 			margin-left: auto;
 			margin-right: auto;
-			color: white;
-			bottom:0%;
+			
+			bottom:10%;
 			left:32%;			
 		}
 		
@@ -65,7 +68,7 @@
 
 
 	<div id="body-container">
-	<%= link_to 'Back to Lists', root_url %>
+	<%= button_to 'Back to Lists', { :action => "index" }, :method => :get %>
 	<h1>Your Tasks for <%=@project.project_name%> List</h1>
 
 	<div id="tasks-container">
@@ -75,8 +78,8 @@
 			<% @task.each do |beta|%>
 			    <%if beta.users_id == current_user.id && beta.projects_id == @project.id && beta.completed == false%>
 			    </br>
-			    -<%= beta.name%>
-			    <%= link_to 'Task completed', beta, :method => 'patch', :style=>'float:right; color: white'%></br>
+			    <button style= "float:left" disabled ><%=beta.name%></button>
+			    <%= button_to 'Task completed', beta, :method => 'patch', :style=>'float:right; color: black'%></br>
 			    <%end%> 
 			<% end %>
 		</article>
@@ -86,26 +89,26 @@
 			    <%if beta.users_id == current_user.id && beta.projects_id == @project.id && beta.completed == true%>
 			    
 			    </br>
-			    -<%= beta.name%>
+			    <button disabled><%=beta.name%></button>
 			    </br>
 			    <%end%> 
 			<% end %>
 		</article>
-	</div>
+	
 	</div>
 
 			<div id="form-container">
 				<form accept-charset="UTF-8" action="/tasks" method="post">
 				<%= token_tag %>
-				  <label>Create New Task:</label>
+				  
 				  <input type="text" name="name" id="name" style="width: 300px; left:40%"/>
 				  <input type="hidden" name="users_id" id="users_id" value= '<%=current_user.id%>' />
 				  <input type="hidden" name="completed" id="users_id" value= 'false' />
 				  <input type="hidden" name="projects_id" id="projects_id" value= '<%=@project.id%>' />
 				  
-				  <input type="submit" >
+				  <button type="submit">Create New Task</button>
 				</form>
 			</div>
-		
+	</div>	
 	
 </body>

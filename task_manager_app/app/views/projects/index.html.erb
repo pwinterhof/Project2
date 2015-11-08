@@ -1,11 +1,12 @@
 <head>
 	<style type="text/css">
-		link{
-			color:white;
+		.clicks{
+			color:blue;
 		}
+		
 		#body-container{
 	      background: url("show_background.jpg") white;
-	      color: white;
+	  		color:black;
 	      background-position: center;
 	      background-size:cover;
 	      position: fixed;
@@ -22,7 +23,7 @@
 		#tasks-container{
 			height:100%;
 			background:rgba(0,0,0,0.5);
-			color: white;
+			
 			position: center;
 			width: 40%;
 			height: 70%;
@@ -33,42 +34,44 @@
 			border-width: 25px;
 		}
 		#form-container{
-			position:fixed;
+			position:relative;
 			height: 100px;
 			margin-left: auto;
 			margin-right: auto;
-			bottom:5%;
+			
+			bottom:10%;
 			left:32%;			
 		}
 	</style>
 </head>
 <body>
 	<div id="body-container">
-	<h1>Your Task Lists</h1>
+	<h1>Your Lists</h1>
 
 		<div id="tasks-container">
 		<% @project.each do |beta|%>
 		    
 		    <%if beta.users_id == current_user.id%>
 		    </br>
-		    <%= beta.project_name%>
-		    <%= link_to '>>>', project_path(beta.id), :style=>'color: white' %>
-		    <%= link_to 'Project Complete', beta, :method => 'delete', :style=>'float:right; color: white' %></br>
-		    
+		    <div>
+		    <%= button_to beta.project_name, project_path(beta.id), :style=>'color: black; float:left', :method =>'get' %>
+		    <%= button_to 'Delete List', beta, :method => 'delete', :style=>'float:right; color: black'%></br>
+		    </div>
 		    
 		    <%end%> 
 		<% end %>
+		</div>
 		
 		<div id="form-container">
 			<form accept-charset="UTF-8" action="/projects" method="post">
 			  <%= token_tag %>
-			  <label>Create a new list:</label>
+			  
 			  <input type="text" name="project_name" id="name" style="width: 300px; left:40%"/>
 			  <input type="hidden" name="users_id" id="users_id" value= '<%=current_user.id%>' />
 
-			  <input type="submit" >
+			  <button type="submit">Create a New List</button>
 			</form>
-		</div>
+		
 		</div>
 	</div>
 </body>
