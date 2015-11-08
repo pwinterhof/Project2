@@ -2,14 +2,15 @@
 	<style type="text/css">
 
 		#body-container{
-			background: url("show_background.jpg") white;
-			background-position: center;
-			background-size:cover;
-			position: fixed;
-			height: 100%;
-			width:100%;
-			font-size: 20px;
-		}
+	      background: url("http://hdwgo.com/wp-content/uploads/2015/03/autumn-background-nature-wallpapers-images.jpg") white;
+	      color: white;
+	      background-position: center;
+	      background-size:cover;
+	      position: fixed;
+	      height: 100%;
+	      width:100%;
+	      font-size: 20px;
+	    }
 		h1{
 			text-align: center;
 		}
@@ -20,6 +21,7 @@
 			text-decoration: underline;
 		}
 		#tasks-container{
+			color: white;
 			margin-left: auto;
 			margin-right: auto;
 			position: relative;
@@ -32,7 +34,7 @@
 			height:100%;
 			display: inline-block;
 			background:rgba(0,0,0,0.5);
-			color: white;
+			
 			position: relative;
 			width: 40%;
 			height: 80%;
@@ -48,7 +50,7 @@
 			height: 100px;
 			margin-left: auto;
 			margin-right: auto;
-	
+			color: white;
 			bottom:0%;
 			left:32%;			
 		}
@@ -58,13 +60,12 @@
 </head>
 
 <body>
-	</br>
-	</br>
-	</br>
-	<%= link_to 'Back to Lists', root_url %>
+
+
 
 
 	<div id="body-container">
+	<%= link_to 'Back to Lists', root_url %>
 	<h1>Your Tasks for <%=@project.project_name%> List</h1>
 
 	<div id="tasks-container">
