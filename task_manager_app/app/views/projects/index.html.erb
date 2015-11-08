@@ -1,45 +1,73 @@
 <head>
 	<style type="text/css">
-		#body-container{
-			background: url("./background1.jpg") grey;
-			background-position: center;
-			height: 400px;
+		link{
+			color:white;
 		}
-		body{
-			position: relative;
-			height: 400px;
+		#body-container{
+			background: url("show_background.jpg") grey;
+			background-position: center;
+			background-size:cover;
+			position: fixed;
+			height: 100%;
+			width:100%;
 			font-size: 20px;
 		}
 		h1{
 			text-align: center;
-			
+			color: white;
+			text-decoration: underline;
+
 		}
 		#tasks-container{
 			height:100%;
+			background:rgba(0,0,0,0.5);
+			color: white;
+			position: center;
+			width: 40%;
+			height: 70%;
+			margin-left: auto;
+			margin-right: auto;
+			border-radius: 25px;
+			border-color: grey;
+			border-width: 25px;
 		}
-		
-
+		#form-container{
+			position:fixed;
+			height: 100px;
+			margin-left: auto;
+			margin-right: auto;
+			bottom:5%;
+			left:32%;			
+		}
 	</style>
 </head>
 <body>
 	<div id="body-container">
-	<h1>Your to-do list</h1>
+	<h1>Your Task Lists</h1>
+
 		<div id="tasks-container">
 		<% @project.each do |beta|%>
-		    </br>
+		    
 		    <%if beta.users_id == current_user.id%>
+		    </br>
 		    <%= beta.project_name%>
-		    <%= link_to '>', project_path(beta.id) %>
-		    <%= link_to 'Delete', beta, :method => 'delete' %></br>
+		    <%= link_to '>>>', project_path(beta.id), :style=>'color: white' %>
+		    <%= link_to 'Project Complete', beta, :method => 'delete', :style=>'float:right; color: white' %></br>
+		    
+		    
 		    <%end%> 
 		<% end %>
-		</div>
+		
+		<div id="form-container">
+			<form accept-charset="UTF-8" action="/projects" method="post">
+			  <%= token_tag %>
+			  <label>Create a new list:</label>
+			  <input type="text" name="project_name" id="name" style="width: 300px; left:40%"/>
+			  <input type="hidden" name="users_id" id="users_id" value= '<%=current_user.id%>' />
 
-		<form accept-charset="UTF-8" action="/projects" method="post">
-		  <input name="authenticity_token" type="hidden" value="J7CBxfHalt49OSHp27hblqK20c9PgwJ108nDHX/8Cts=" />
-		  <input type="text" name="project_name" id="name" />
-		  <input type="hidden" name="users_id" id="users_id" value= '<%=current_user.id%>' />
-		  <input type="submit">
-		</form>
+			  <input type="submit" >
+			</form>
+		</div>
+		</div>
 	</div>
 </body>

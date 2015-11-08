@@ -3,9 +3,12 @@ before_action :authenticate_user!
 	def index
 		@project = Project.all
 		@current_user = current_user
-		
+
 	end
 	def show
+		
+		@project = Project.find(params[:id])
+		@task = Task.all
 	end
 	def create
 		

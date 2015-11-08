@@ -1,0 +1,110 @@
+<head>
+	<style type="text/css">
+
+		#body-container{
+			background: url("show_background.jpg") white;
+			background-position: center;
+			background-size:cover;
+			position: fixed;
+			height: 100%;
+			width:100%;
+			font-size: 20px;
+		}
+		h1{
+			text-align: center;
+		}
+		h2{
+			font-size: 24px;
+			text-align: center;
+			color: white;
+			text-decoration: underline;
+		}
+		#tasks-container{
+			margin-left: auto;
+			margin-right: auto;
+			position: relative;
+			height:80%;
+			vertical-align: top;
+			padding-left: 12%;
+			padding-right: auto;
+		}
+		.tasks{
+			height:100%;
+			display: inline-block;
+			background:rgba(0,0,0,0.5);
+			color: white;
+			position: relative;
+			width: 40%;
+			height: 80%;
+			border-radius: 25px;
+			border-color: grey;
+			border-width: 25px;
+			vertical-align: top;
+			padding: 10px
+		}
+		
+		#form-container{
+			position:fixed;
+			height: 100px;
+			margin-left: auto;
+			margin-right: auto;
+	
+			bottom:0%;
+			left:32%;			
+		}
+		
+
+	</style>
+</head>
+
+<body>
+	</br>
+	</br>
+	</br>
+	<%= link_to 'Back to Lists', root_url %>
+
+
+	<div id="body-container">
+	<h1>Your Tasks for <%=@project.project_name%> List</h1>
+
+	<div id="tasks-container">
+
+		<article class="tasks">
+			<h2>In Progress</h2>
+			<% @task.each do |beta|%>
+			    <%if beta.users_id == current_user.id && beta.projects_id == @project.id && beta.completed == false%>
+			    </br>
+			    -<%= beta.name%>
+			    <%= link_to 'Task completed', beta, :method => 'patch', :style=>'float:right; color: white'%></br>
+			    <%end%> 
+			<% end %>
+		</article>
+		<article class="tasks">
+			<h2>Completed</h2>
+			<% @task.each do |beta|%>
+			    <%if beta.users_id == current_user.id && beta.projects_id == @project.id && beta.completed == true%>
+			    
+			    </br>
+			    -<%= beta.name%>
+			    </br>
+			    <%end%> 
+			<% end %>
+		</article>
+	</div>
+	</div>
+
+			<div id="form-container">
+				<form accept-charset="UTF-8" action="/tasks" method="post">
+				<%= token_tag %>
+				  <label>Create New Task:</label>
+				  <input type="text" name="name" id="name" style="width: 300px; left:40%"/>
+				  <input type="hidden" name="users_id" id="users_id" value= '<%=current_user.id%>' />
+				  <input type="hidden" name="completed" id="users_id" value= 'false' />
+				  <input type="hidden" name="projects_id" id="projects_id" value= '<%=@project.id%>' />
+				  
+				  <input type="submit" >
+				</form>
+			</div>
+		
+	
+</body>
