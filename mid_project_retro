@@ -1,0 +1,22 @@
+What are the features of your MVP?
+
+-Users model, projects model, tasks model
+
+-Essentially users can log in, will see their projects/lists of tasks they need to complete, and then can go into those projects to see what specific tasks they need to complete.  On each page, they will be able to create a new project/task, mark it as completed, and delete the list from being displayed.
+
+What aspects of your approach and attitude so far have been the hardest?
+
+-Most difficult part is working with finicky syntax.  I had a problem last night were my project#create wouldn't accept a param called :name, but would accept a param called :project_name.  No clue why, so I just gave up after a couple hours and changed the attribute.  
+
+-Also spent a lot of time on CSS last night which I thought would be a struggle.  But skeleton and pure should make that part of the process a lot easier.
+
+What have you gotten done so far?
+
+-Set up my database, tables, models, relationships.  
+-Got the projects page and products show/tasks page done so far
+	>has delete, show, create functionality
+
+What steps are you going to take to make sure that your goals are accomplished by project presentation time?
+
+-May add a way to elaborate on tasks like comments
+-Spend the weekend either using pure or skeleton to make page a lot more attractive
